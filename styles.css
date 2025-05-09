@@ -1,0 +1,207 @@
+/* Estilo para el banner */
+.banner {
+  background-color: #ffcc00; /* Color de fondo */
+  color: #000; /* Color del texto */
+  padding: 10px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Para que se quede arriba de todo el contenido */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.banner p {
+  margin: 0;
+}
+
+/* Opcional: para que el contenido no quede cubierto por el banner */
+body {
+  padding-top: 40px; /* Ajusta según el tamaño del banner */
+}
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #a9def9;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+nav a {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+.productos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.producto {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  margin: 1rem;
+  width: 220px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px #ccc;
+  transition: transform 0.3s ease;
+}
+
+.producto img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 10px;
+}
+
+.producto button {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #a9def9;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+footer {
+  width: 100%;
+  text-align: center;
+  padding: 20px 0;
+  background-color: #a9def9;  /* Puedes personalizarlo según tu diseño */
+  position: relative;
+  clear: both;  /* Para evitar que otros elementos afecten su posicionamiento */
+  box-sizing: border-box;
+}
+
+
+@media (max-width: 768px) {
+  .producto {
+    width: 100%;
+    margin: 10px 0;
+  }
+}
+
+.banner {
+  background-color: #ffcc00;
+  text-align: center;
+  padding: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.buscador-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+#buscador {
+  width: 50%;
+  max-width: 400px;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.producto:hover {
+  transform: scale(1.05); /* Aumenta el tamaño un 5% al pasar el cursor */
+}
+
+.categorias-banner {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.categorias-banner button {
+  background-color: #fcd5ce;
+  color: #333;
+  border: none;
+  padding: 10px 15px;
+  margin: 0 5px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.categorias-banner button:hover {
+  background-color: #ffb5a7;
+}
+
+/* Aquí van los estilos para los botones */
+/* Contenedor de los botones */
+/* Contenedor de los botones */
+.botones {
+  display: flex;
+  justify-content: space-between; /* Asegura que los botones estén en los extremos */
+  gap: 10px;  /* Espacio entre los botones */
+  margin-top: 10px;  /* Ajuste para separar los botones de la imagen */
+  align-items: center; /* Alinea los botones verticalmente en el centro */
+}
+
+/* Estilos de los botones */
+.agregar-carrito,
+.boton-comprar {
+  width: 48%;  /* Los botones ocupan el 48% del ancho del contenedor (dejando espacio entre ellos) */
+  padding: 10px 0;  /* Aumenta la altura para mejor visibilidad */
+  text-align: center;  /* Asegura que el texto del botón esté centrado */
+  cursor: pointer;  /* Añade el cursor pointer al pasar el mouse sobre los botones */
+}
+
+/* Hover para los botones */
+.agregar-carrito:hover {
+  background-color: #0056b3;  /* Cambio de color para el hover del botón Añadir al carrito */
+}
+
+.boton-comprar:hover {
+  background-color: #1e7e34;  /* Cambio de color para el hover del botón Comprar */
+}
+
+/* Estilos adicionales para los botones de la clase 'botones-producto' */
+.botones-producto button {
+  width: 100%; /* Asegura que el botón ocupe todo el ancho disponible */
+  padding: 10px 0; /* Ajusta la altura para mayor usabilidad */
+}
+
+/* Hover para los botones en la clase 'botones-producto' */
+.botones-producto .agregar-carrito:hover {
+  background-color: #0056b3; /* Cambio de color para el hover del botón Añadir al carrito */
+}
+
+.botones-producto .boton-comprar:hover {
+  background-color: #1e7e34; /* Cambio de color para el hover del botón Comprar */
+}
+.vaciar-carrito {
+  width: 100%; /* Asegura que el botón ocupe todo el ancho del contenedor */
+  padding: 12px 0; /* Da altura al botón para mejor usabilidad */
+  background-color: #e74c3c; /* Un color llamativo para el botón */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 20px; /* Separación de otros elementos */
+}
+
+.vaciar-carrito:hover {
+  background-color: #c0392b; /* Cambio de color en hover */
+}

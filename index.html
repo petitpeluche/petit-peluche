@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>petit peluche</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  
+  <style>
+    /* Estilos generales */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #007bff;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+    }
+    
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* Estilo básico para el carrito */
+    .carrito-container {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background-color: #f1f1f1;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .carrito-container i {
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .carrito-container .cantidad {
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    /* Productos */
+    .productos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      padding: 20px;
+    }
+
+    .producto {
+      margin: 15px;
+      text-align: center;
+      width: 200px;
+    }
+
+    .producto img {
+      width: 100%;
+      height: 100px;
+      object-fit: cover;
+    }
+
+    .producto h2 {
+      font-size: 18px;
+    }
+
+    .producto p {
+      font-size: 14px;
+    }
+
+    .producto span {
+      font-size: 16px;
+      color: green;
+    }
+
+    .agregar-carrito {
+      margin-top: 10px;
+      padding: 8px 12px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .agregar-carrito:hover {
+      background-color: #0056b3;
+    }
+
+    .boton-comprar {
+      margin-top: 10px;
+      padding: 8px 12px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .boton-comprar:hover {
+      background-color: #1e7e34;
+    }
+
+    /* Carrito desplegable */
+    .carrito {
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      margin-top: 20px;
+    }
+
+    .carrito-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .carrito-item img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      margin-right: 15px;
+    }
+
+    .carrito-item p {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .total {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .boton-pago {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+
+    .boton-pago:hover {
+      background-color: #0056b3;
+    }
+
+    /* Buscador y categorías */
+    .buscador {
+      text-align: center;
+      margin: 20px;
+    }
+
+    .buscador input {
+      padding: 10px;
+      width: 50%;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .categorias {
+      text-align: center;
+      margin: 20px;
+    }
+
+    .categorias button {
+      padding: 10px 20px;
+      margin: 0 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .categorias button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  
+  <header>
+    <h1>petit peluche</h1>
+    <nav>
+      <a href="#">Inicio</a>
+      <a href="#">Productos</a>
+      <a href="#">Contacto</a>
+    </nav>
+  </header>
+
+  <div class="banner">
+    <p>¡Bienvenido a Petit Peluche! 🌟 Descubre nuestras novedades y ofertas exclusivas.</p>
+  </div>
+  
+  <!-- Carrito flotante -->
+  <div class="carrito-container">
+    <i class="fas fa-shopping-cart" onclick="mostrarCarrito()"></i>
+    <span class="cantidad" id="cantidadCarrito">0</span>
+  </div>
+
+  <!-- Aquí puedes continuar con el resto de tu página -->
+</body>
+</html>
+
+
+  <!-- Buscador -->
+  <div class="buscador">
+    <input type="text" id="buscar" placeholder="Buscar productos" oninput="buscarProductos()">
+
+  </div>
+
+  <!-- Categorías -->
+  <div class="categorias">
+    <button onclick="filtrarCategoria('peluches')">Peluches</button>
+    <button onclick="filtrarCategoria('figuritas-decoración')">Figuritas de decoración</button>
+    <button onclick="filtrarCategoria('llaveros')">Llaveros</button>
+  </div>
+
+  <div class="productos" id="productos">
+    <!-- Productos -->
+    <section class="producto peluches">
+      <img src="monito.jpeg" alt="monito">
+      <h2>Mono</h2>
+      <p>Mono de unos 15cm aprox.</p>
+      <span>$25.000 COP</span>
+      <div class="botones-producto">
+        <button class="agregar-carrito" onclick="agregarAlCarrito('Mono', 25000, 'monito.jpeg')">
+          <i class="fas fa-cart-plus"></i> Añadir al carrito
+        </button>
+        <a href="https://wa.me/573135713388" target="_blank">
+          <button class="boton-comprar">Comprar</button>
+        </a>
+      </div>
+    </section>
+    
+
+    <section class="producto peluches">
+      <img src="vaca.jpeg" alt="vaca">
+      <h2>Vaca</h2>
+      <p>Vaca de unos 30cm aprox.</p>
+      <span>$35.000 COP</span>
+      <div class="botones-producto">
+        <button class="agregar-carrito" onclick="agregarAlCarrito('Vaca', 35000, 'vaca.jpeg')">
+          <i class="fas fa-cart-plus"></i> Añadir al carrito
+        </button>
+        <a href="https://wa.me/573135713388" target="_blank">
+          <button class="boton-comprar">Comprar</button>
+        </a>
+      </div>
+    </section>
+    
+
+    <section class="producto figuritas-decoración">
+      <img src="igor.jpeg" alt="igor">
+      <h2>Igor</h2>
+      <p>Igor de Winnie Pooh</p>
+      <span>$25.000 COP</span>
+      <div class="botones-producto">
+        <button class="agregar-carrito" onclick="agregarAlCarrito('Igor', 25000, 'igor.jpeg')">
+          <i class="fas fa-cart-plus"></i> Añadir al carrito
+        </button>
+        <a href="https://wa.me/573135713388" target="_blank">
+          <button class="boton-comprar">Comprar</button>
+        </a>
+      </div>
+    </section>
+    
+
+    <section class="producto peluches">
+      <img src="ballenita 1.jpeg" alt="ballenita">
+      <h2>Ballena</h2>
+      <p>Ballenita con barriga blanca y color de tu preferencia</p>
+      <span>$12.000 COP</span>
+      <div class="botones-producto">
+        <button class="agregar-carrito" onclick="agregarAlCarrito('Ballena', 12000, 'ballenita 1.jpeg')">
+          <i class="fas fa-cart-plus"></i> Añadir al carrito
+        </button>
+        <a href="https://wa.me/573135713388" target="_blank">
+          <button class="boton-comprar">Comprar</button>
+        </a>
+      </div>
+    </section>
+    
+
+    <section class="producto figuritas-decoración">
+      <img src="osito fantasma.jpeg" alt="osito fantasma">
+      <h2>Osito Fantasma</h2>
+      <p>Osito con disfraz de fantasma para decoración</p>
+      <span>$25.000 COP</span>
+      <div class="botones-producto">
+        <button class="agregar-carrito" onclick="agregarAlCarrito('osito fantasma', 25000, 'osito fantasma.jpeg')">
+          <i class="fas fa-cart-plus"></i> Añadir al carrito
+        </button>
+        <a href="https://wa.me/573135713388" target="_blank">
+          <button class="boton-comprar">Comprar</button>
+        </a>
+      </div>
+    </section>
+    
+    
+    
+
+    <section class="producto peluches">
+      <img src="snoopy grande.jpeg" alt="snoopy">
+      <h2>Snoopy</h2>
+      <p>Snoopy sentado</p>
+      <span>$30.000 COP</span>
+      <div class="botones-producto">
+        <button class="agregar-carrito" onclick="agregarAlCarrito('Snoopy', 30000, 'snoopy grande.jpeg')">
+          <i class="fas fa-cart-plus"></i> Añadir al carrito
+        </button>
+        <a href="https://wa.me/573135713388" target="_blank">
+          <button class="boton-comprar">Comprar</button>
+        </a>
+      </div>
+    </section>
+    
+
+  <footer>
+    <p>© 2025 petit peluche - Todos los derechos reservados</p>
+  </footer>
+
+  <script>
+    let carrito = [];
+    let cantidadCarrito = 0;
+    // Cargar el carrito desde localStorage cuando se carga la página
+window.onload = function() {
+  const carritoGuardado = JSON.parse(localStorage.getItem('carrito')) || [];  // Recupera el carrito guardado o un array vacío
+  carrito = carritoGuardado;  // Asigna los productos guardados al carrito
+  cantidadCarrito = carrito.length;  // Calcula la cantidad de productos en el carrito
+  document.getElementById("cantidadCarrito").textContent = cantidadCarrito;  // Actualiza el número de artículos en el carrito visualmente
+};
+
+
+    // Función para agregar al carrito
+    function agregarAlCarrito(nombre, precio, imagen) {
+      carrito.push({ nombre, precio, imagen });
+      cantidadCarrito++;
+      document.getElementById("cantidadCarrito").textContent = cantidadCarrito;
+
+      // Guardar el carrito en localStorage
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+
+      alert(`Agregaste "${nombre}" al carrito por $${precio.toLocaleString()} COP.`);
+    }
+
+    // Función para mostrar el carrito
+    function mostrarCarrito() {
+      window.location.href = "carrito.html";
+    }
+
+    // Función para calcular el total en el carrito
+    function calcularTotal() {
+      let total = 0;
+      carrito.forEach(item => {
+        total += item.precio;
+      });
+      return total;
+    }
+
+    // Mostrar carrito con imágenes y totales
+    function mostrarProductosCarrito() {
+      const carritoContainer = document.getElementById("carrito");
+      const totalContainer = document.getElementById("total");
+      carritoContainer.innerHTML = '';
+      
+      carrito.forEach(item => {
+        carritoContainer.innerHTML += `
+          <div class="carrito-item">
+            <img src="${item.imagen}" alt="${item.nombre}">
+            <p>${item.nombre} - $${item.precio.toLocaleString()} COP</p>
+          </div>
+        `;
+      });
+
+      totalContainer.textContent = `Total: $${calcularTotal().toLocaleString()} COP`;
+    }
+  </script>
+  <script>
+    function buscarProductos() {
+      const query = document.getElementById("buscar").value.toLowerCase();
+      const productos = document.querySelectorAll('.producto');
+  
+      productos.forEach(producto => {
+        const nombreProducto = producto.querySelector('h2').textContent.toLowerCase();
+        if (nombreProducto.includes(query)) {
+          producto.style.display = 'block';
+        } else {
+          producto.style.display = 'none';
+        }
+      });
+    }
+    </script>
+
+   <script>
+  function filtrarCategoria(categoria) {
+    const productos = document.querySelectorAll('.producto');
+
+    productos.forEach(producto => {
+      // Verificar si el producto pertenece a la categoría seleccionada
+      if (producto.classList.contains(categoria)) {
+        producto.style.display = 'block'; // Mostrar producto
+      } else {
+        producto.style.display = 'none'; // Ocultar producto
+      }
+    });
+  }
+  </script>
+</body>
+</html>
+
+
+
